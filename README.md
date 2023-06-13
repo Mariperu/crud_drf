@@ -171,3 +171,7 @@ https://render.com/docs/deploy-django (since Update Your App For Render)
     - Key: SECRET_KEY -> Value: (paste psw)
     - Key:PYTHON_VERSION -> Value: 3.11.2
     - Save
+
+**Verify Api REST** (Postman or tunder VSC)
+
+https://drfcrud-test-kk2l.onrender.com/api/projects/
