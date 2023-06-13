@@ -59,10 +59,21 @@ _**Note:**_: install _Thunder Client_ VSC extension (Ranga Vadhineni) to consult
 
 https://dashboard.render.com/
 
+- Create New PostgreSQL
 - Create New Web Service
-- New PostgreSQL
+
+### New PostgreSQL (for db)
+
+- Name: nameDB
+- Db: nameDB
+- user: (EMPTY)
+- Free
+- Create db
+- Go to dashboard
 
 ### New Web Service (for backend)
+
+**Set up project:**
 
 https://render.com/docs/deploy-django (since Update Your App For Render)
 
@@ -139,15 +150,24 @@ https://render.com/docs/deploy-django (since Update Your App For Render)
 7.  Allow buils.sh as executable: `chmod a+x build.sh`
 8.  To serve content (as css, img, etc): `pip install gunicorn`
 
-### New PostgreSQL (for db)
+**render**
 
-- Name: nameDB
-- Db: nameDB
-- user: (EMPTY)
-- Free
-- Create db
-- Go to dashboard
-
-```
-
-```
+9. Create a new Web Service
+10. Connect a repository (choose a repository)
+11. Connect
+    - Name: name
+    - Region: (choose)
+    - Branch: main
+    - Root Directory: (default)
+    - Runtime: Python3
+    - Build Command: _./build.sh_
+    - Start command: gunicorn crudproject.wsgi
+    - Free -> create _(it is going to fail because environment variables ...)_
+12. Create environments:
+    - From POSTGRESQL dashboard, copy the _Internal database URL_
+    - Go to Web Service -> Environment
+    - Key: DATABASE_URL -> Value: (paste copy)
+    - Go to : https://randomkeygen.com/ , copy one Fort Knox Passwords
+    - Key: SECRET_KEY -> Value: (paste psw)
+    - Key:PYTHON_VERSION -> Value: 3.11.2
+    - Save
