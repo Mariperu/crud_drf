@@ -15,14 +15,12 @@ Python provides several built-in modules for serialization, such as pickle, json
 1. `py -m venv venv`
 2. `source venv/scripts/activate`
 3. `pip install django`
-
-   `python manage.py createsuperuser`
-
-4. **`pip install djangorestframework`**
-5. ` django-admin startproject crudproject .`
-6. `py manage.py runserver`
-7. `py manage.py startapp apps`
-8. _setting.py_ :
+4. `python manage.py createsuperuser`
+5. **`pip install djangorestframework`**
+6. ` django-admin startproject crudproject .`
+7. `py manage.py runserver`
+8. `py manage.py startapp apps`
+9. _setting.py_ :
 
    ```
    INSTALLED_APPS = [
@@ -32,11 +30,12 @@ Python provides several built-in modules for serialization, such as pickle, json
    ]
    ```
 
-9. `py manage.py runserver`
-10. set up _apps/models.py_
-11. set up any db ... _(by default: db.sqlite3)_
-12. `py manage.py makemigrations apps`
-13. `py manage.py migrate`
+10. Register _apps_ in _admin.py_.
+11. `py manage.py runserver`
+12. set up _apps/models.py_
+13. set up any db ... _(by default: db.sqlite3)_
+14. `py manage.py makemigrations apps`
+15. `py manage.py migrate`
 
 ### **Rest API set up:**
 
@@ -138,22 +137,41 @@ https://render.com/docs/deploy-django (since Update Your App For Render)
 
     - Create _build.sh_ file
 
-    ```
-        #!/usr/bin/env bash
-        # exit on error
-        set -o errexit
+      ```
+          #!/usr/bin/env bash
+          # exit on error
+          set -o errexit
 
-        pip install -r requirements.txt
+          pip install -r requirements.txt
 
-        python manage.py collectstatic --no-input
-        python manage.py migrate
-    ```
+          python manage.py collectstatic --no-input
+          python manage.py migrate
+      ```
+
+    **Createsuperuser in Render** (Run only once):
+
+    - Create environment variables in Render:
+
+      CREATE_SUPERUSER = True
+      DJANGO_SUPERUSER_EMAIL
+      DJANGO_SUPERUSER_PASSWORD
+      DJANGO_SUPERUSER_USERNAME
+
+    - _build.sh_ file:
+
+      ```
+        ...
+          if [[ $CREATE_SUPERUSER ]];
+          then
+          python manage.py createsuperuser --no-input
+          fi
+      ```
 
 6.  Requirements: `pip freeze > requirements.txt`
 7.  Allow buils.sh as executable: `chmod a+x build.sh`
 8.  To serve content (as css, img, etc): `pip install gunicorn`
 
-**render**
+**Render**
 
 9. Create a new Web Service
 10. Connect a repository (choose a repository)
@@ -166,7 +184,7 @@ https://render.com/docs/deploy-django (since Update Your App For Render)
     - Build Command: _./build.sh_
     - Start command: gunicorn crudproject.wsgi
     - Free -> create _(it is going to fail because environment variables ...)_
-12. Create environments:
+12. Create environment variables:
     - From POSTGRESQL dashboard, copy the _Internal database URL_
     - Go to Web Service -> Environment
     - Key: DATABASE_URL -> Value: (paste copy)
