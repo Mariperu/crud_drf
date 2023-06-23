@@ -26,7 +26,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = "django-insecure-t6wpz3^mbw!2l0o+j36a%t#*3d=b9ygsimvsho6z5i0a#)xs3b"
 SECRET_KEY = os.environ.get('SECRET_KEY', default='django-insecure-t6wpz3^mbw!2l0o+j36a%t#*3d=b9ygsimvsho6z5i0a#)xs3b')
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -49,6 +48,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    "import_export",
     "apps.apps.AppsConfig"
 ]
 
@@ -96,12 +96,13 @@ DATABASES = {
     )
     #  "default": {
     #     "ENGINE": 'django.db.backends.postgresql',
-    #     "DATABASE_URL": os.environ.get["DATABASE_URL"],
-        # "NAME": os.environ["DB_NAME"],
-        # "USER": os.environ["DB_USER"],
-        # "PASSWORD": os.environ["DB_PASSWORD"],
-        # "HOST": os.environ["DB_HOST"],
-        # "PORT": os.environ["DB_PORT"],
+    #     # "DATABASE_URL": os.environ.get["DATABASE_URL"],
+    #     "NAME": os.environ["DB_NAME"],
+    #     "USER": os.environ["DB_USER"],
+    #     "PASSWORD": os.environ["DB_PASSWORD"],
+    #     "HOST": os.environ["DB_HOST"],
+    #     "PORT": os.environ["DB_PORT"],
+    # }
 }
 
 # Password validation

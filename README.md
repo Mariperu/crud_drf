@@ -196,3 +196,28 @@ https://render.com/docs/deploy-django (since Update Your App For Render)
 **Verify Api REST** (Postman or tunder VSC)
 
 https://drfcrud-test-kk2l.onrender.com/api/projects/
+
+---
+
+### django-import-export
+
+1. `pip install django-import-export`
+2. _settings.py_
+
+   ```
+   INSTALLED_APPS = (
+           ...
+           'import_export',
+       )
+   ```
+
+3. `python manage.py collectstatic` (also verify to add **STATIC_ROOT** in settings.py )
+4. Inside _apps/admin.py_, set up _django-import-export_
+
+   ```
+   from import_export import resources
+   from import_export.admin import ImportExportModelAdmin
+   ```
+
+   - Create a resource class
+   - Include: resource_class inside @admin class
