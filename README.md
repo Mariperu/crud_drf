@@ -15,6 +15,9 @@ Python provides several built-in modules for serialization, such as pickle, json
 1. `py -m venv venv`
 2. `source venv/scripts/activate`
 3. `pip install django`
+
+   `python manage.py createsuperuser`
+
 4. **`pip install djangorestframework`**
 5. ` django-admin startproject crudproject .`
 6. `py manage.py runserver`
